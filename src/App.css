@@ -1,38 +1,337 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
   min-height: 100vh;
+}
+
+.AppHeader {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.headerContent {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap: 20px;
+  position: relative;
+}
+
+.AppHeader h1 {
+  color: #2c3e50;
+  margin: 0;
+}
+
+.addTodoForm {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.todoInput, .searchInput {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: #ffffff;
+  color: #333333;
+  transition: all 0.3s ease;
+}
+
+.prioritySelect, .editPrioritySelect, .priorityFilterSelect {
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  color: #333333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.prioritySelect:focus, .editPrioritySelect:focus, .priorityFilterSelect:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+.todoInput:focus, .searchInput:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+.filtersContainer {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.searchFilter {
+  flex: 1;
+}
+
+.priorityFilter {
+  flex-shrink: 0;
+}
+
+.priorityFilterSelect {
+  min-width: 160px;
+  background-color: #f8f9fa;
+  border-color: #bdc3c7;
+}
+
+.priorityFilterSelect:hover {
+  background-color: #e9ecef;
+}
+
+.searchInput {
+  width: 100%;
+}
+
+.addBtn {
+  padding: 10px 20px;
+  background-color: #3498db;
   color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s;
 }
 
-.App-link {
-  color: #61dafb;
+.addBtn:hover {
+  background-color: #2980b9;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.todoList {
+  list-style: none;
+  padding: 0;
+}
+
+.todoItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.todoItem.priorityLow {
+  border-left: 5px solid #27ae60;
+}
+
+.todoItem.priorityMedium {
+  border-left: 5px solid #f39c12;
+}
+
+.todoItem.priorityHigh {
+  border-left: 5px solid #e74c3c;
+}
+
+.priorityIndicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.priorityIndicator.priorityLow {
+  background-color: #27ae60;
+}
+
+.priorityIndicator.priorityMedium {
+  background-color: #f39c12;
+}
+
+.priorityIndicator.priorityHigh {
+  background-color: #e74c3c;
+}
+
+.priorityLabel {
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-weight: bold;
+  color: white;
+  background-color: #95a5a6;
+}
+
+.todoItem.priorityLow .priorityLabel {
+  background-color: #27ae60;
+}
+
+.todoItem.priorityMedium .priorityLabel {
+  background-color: #f39c12;
+}
+
+.todoItem.priorityHigh .priorityLabel {
+  background-color: #e74c3c;
+}
+
+.todoItem:hover {
+  border-color: #ddd;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.todoItem.editing {
+  background-color: #fff5e1;
+  border-color: #f39c12;
+}
+
+.todoItem input[type="checkbox"] {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.todoItem span {
+  flex: 1;
+  font-size: 16px;
+}
+
+.todoItem span.completed {
+  text-decoration: line-through;
+  color: #7f8c8d;
+}
+
+.todoActions {
+  display: flex;
+  gap: 8px;
+}
+
+.editBtn {
+  padding: 5px 10px;
+  background-color: #f39c12;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.editBtn:hover {
+  background-color: #e67e22;
+}
+
+.deleteBtn {
+  padding: 5px 10px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.deleteBtn:hover {
+  background-color: #c0392b;
+}
+
+.editForm {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.editInput {
+  flex: 1;
+  padding: 8px;
+  border: 2px solid #f39c12;
+  border-radius: 3px;
+  font-size: 16px;
+  background-color: #ffffff;
+  color: #333333;
+  transition: all 0.3s ease;
+}
+
+.editInput:focus {
+  outline: none;
+  border-color: #e67e22;
+}
+
+.editActions {
+  display: flex;
+  gap: 5px;
+}
+
+.saveBtn {
+  padding: 5px 10px;
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.saveBtn:hover {
+  background-color: #2ecc71;
+}
+
+.cancelBtn {
+  padding: 5px 10px;
+  background-color: #95a5a6;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.cancelBtn:hover {
+  background-color: #7f8c8d;
+}
+
+.noTodos {
+  text-align: center;
+  color: #7f8c8d;
+  font-style: italic;
+  padding: 20px;
+}
+
+.todoStats {
+  margin-top: 20px;
+  text-align: center;
+  color: #7f8c8d;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  .filtersContainer {
+    flex-direction: column;
+    gap: 10px;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .searchFilter, .priorityFilter {
+    width: 100%;
   }
+  
+  .priorityFilterSelect {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .headerContent {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+body {
+  margin: 0;
+  background-color: #ffffff;
+  transition: background-color 0.3s ease;
 }
